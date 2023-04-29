@@ -22,17 +22,17 @@ Magnetar (Multi-Agent General Nlp Engine forming a Turing-complete ARchitecture)
 
 ---
 
-## Administrators
+## Administrators 
 
-### The Interface
+### The User Interface
 
-The Interface takes and processes the user's prompt. It asks for clarifications and eventually, with the user's help, defines the primary objective.
+The User Interface takes and processes the user's prompt. It asks for clarifications and eventually, with the user's help, defines the primary objective.
 
-- When the user wants to complete a task, they must submit their request to The Interface.
-- Once the request has been submitted, The Interface's primary objective is to make the user's desired task as clear as possible.
-- The Interface provides a list of potential concerns regarding how vague elements of the initial prompt could result in suboptimal team performance, and asks the user to clarify these elements of the task.
-- The Interface continues to refine the task until it has a clear image of the desired task or until the user indicates that they no longer wish to continue clarifying their task.
-- Finally, The Interface creates a process agent with the user-verified final prompt details as the primary objective.
+- When the user wants to complete a task, they must submit their request to The User Interface.
+- Once the request has been submitted, The User Interface's primary objective is to make the user's desired task as clear as possible.
+- The User Interface provides a list of potential concerns regarding how vague elements of the initial prompt could result in suboptimal team performance, and asks the user to clarify these elements of the task.
+- The User Interface continues to refine the task until it has a clear image of the desired task or until the user indicates that they no longer wish to continue clarifying their task.
+- Finally, The User Interface creates a process agent with the user-verified final prompt details as the primary objective.
 
 ### The Manager
 
@@ -66,33 +66,33 @@ Researching agents can be invoked by any agent in order to answer an information
 
 ### Processors
 
-Processing agents carry out their own objective by budgeting and planning interpreter commands.
+Processing agents carry out their own objective by budgeting and planning atomic instructions.
 
 - Each process agent is provided with its own objective by its parent agent.
-- It also has a budget, which is the maximum quantity of interpreter commands it and its child agents can run to accomplish the given task.
-- Processing agents carry out several tasks in order, including estimating the feasibility of the task given the budget, determining whether it is reasonable to continue trying to complete the task, requesting additional information from a researcher if necessary, and creating a plan to accomplish its objective.
+- It also has a budget, which is the maximum quantity of atomic instructions it and its child agents can run to accomplish the given task.
+- The processing agents begin by estimating a percentage chance that the given task can be accomplished with the given budget; i.e. whether the estimated quantity of atomic instructions to be executed exceeds the allocated budget.
 
-- If a processing agent determines it's reasonable to continue, it evaluates whether the current task can be carried out by executing a single command.
-- If it can, a processing agent invokes an interpreter agent with a prompt that clearly describes the command that needs to be executed in natural language, this is called an interpreter command.
+- If a processing agent determines it's reasonable to continue, it evaluates whether the current task can be carried out by executing a single atomic instruction.
+- If it can, a processing agent invokes an interpreter agent with a prompt that clearly describes the task that needs to be executed in natural language, this is called an atomic instruction.
 - Otherwise, a processing agent creates a plan to accomplish its objective. This plan is composed of n steps tasks, where each task is an objective to be given to a child process agent and each task is given a budget such that the sum of the budget of all tasks is equal to the budget of the current process agent.
 - A processing agent then invokes child process agents for each task in the plan.
 
 ### Interpreter
 
-Interpreter agents convert an extremely simple instruction written in natural language (known as an interpreter command) to a command that can be run by the system (known as a system command).
+Interpreter agents convert an extremely simple instruction written in natural language (known as an atomic instruction) to a command that can be run by the command executor (known as an execution command).
 
 ---
 
-## The System
+## The Command Executor
 
-The system is at the lowest level of the hierarchy. It takes in a system command, ensures that it is valid, and then executes it. These systems are modular in nature, meaning Magnetar can be used as a controller for anything.
+The command executor exists at the lowest level of the hierarchy. It takes in an execution command, ensures that it is valid and part of the executor's command set, and then executes it. These command sets are modular in nature, meaning Magnetar can be used as a controller for anything.
 
-- The default built-in system is bash for Linux users and cmd for Windows users.
-- However, the system can be any set of commands; it could even be a set of commands that control a robot, for example.
+- The default built-in command set is bash for Linux users and cmd for Windows users.
+- However, the command set can be any set of user-defined commands; for example, it could be a set of commands that control a robot.
 
-### Creating Your Own System
+### Creating Your Own Command Set
 
-You can create your own system by creating a new class that inherits from the `System` class. Please see the [documentation](https://github.com/LanaMantegazza/Magnetar/docs) for more information.
+You can create your own command set by creating a new class that inherits from the `CommandSet` class. Please see the [documentation](https://github.com/LanaMantegazza/Magnetar/docs) for more information.
 
 ## License
 

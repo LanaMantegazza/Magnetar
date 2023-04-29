@@ -11,7 +11,7 @@ Please see the [ARCHITECTURE.md](ARCHITECTURE.md) file for a detailed descriptio
 
 ## Overview
 
-As of now, the project is in its infancy with the core idea being crystallized in CONCEPT.md. The implementation of the AI agents is currently underway, and I'm hoping to upload a functional project soon!
+As of now, the project is in its infancy with the core idea being crystallized in [ARCHITECTURE.md]ARCHITECTURE.md. The implementation of the AI agents is currently underway, and I'm hoping to upload a functional project soon!
 
 ---
 
